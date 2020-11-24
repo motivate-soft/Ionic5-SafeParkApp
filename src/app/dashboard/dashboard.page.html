@@ -1,0 +1,78 @@
+<ion-content [ngStyle]="{'height': windHeight +'px'}">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center" style="height: 90%;margin-top: 2%">
+      <div class="holder">
+
+        <ion-button expand="block" (click)="refreshPage()"><ion-icon size="large" name="sync"></ion-icon></ion-button>  
+        <div>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" style="width: 100%" [ngStyle]="{'height': btnHeight + 'px'}" (click)="goArmPage()">
+                <div>
+                  <img [src]="lockImg" style="width: 50px"/>
+                  <p class="btn-text">Arm/Disarm</p>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button style="width: 100%" [ngStyle]="{'height': btnHeight + 'px'}" (click)="btnGoogleMapShow()">
+                <div>
+                  <img [src]="mapImg" style="width: 50px"/>
+                  <p class="btn-text">Location</p>
+              </div>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button style="width: 100%" [ngStyle]="{'height': btnHeight + 'px'}" (click)="addDevice()">
+                <div>
+                  <img [src]="addVehicleImg" style="width: 50px"/>
+                  <p class="btn-text">Add Vehicle</p>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button style="width: 100%" [ngStyle]="{'height': btnHeight + 'px'}" (click)="deviceManage()">
+                <div>
+                  <img [src]="allVehicleImg" style="width: 50px"/>
+                  <p class="btn-text">All Vehicles</p>
+                </div>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="btns-holder" style="margin: auto">
+          <ion-row>
+            <ion-col>
+              <ion-button style="height: 50px; width: 50px" (click)="goWifiPage()">
+                <ion-icon size="large" name="wifi"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button style="height: 50px; width: 50px" (click)="goAlertPage()">
+                <ion-icon size="large" name="megaphone"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button style="height: 50px; width: 50px">
+                <ion-icon size="large" name="time"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+
+              <ion-fab>
+                <ion-button ion-fab style="height: 50px; width: 50px"><ion-icon name="ellipsis-horizontal" size="large"></ion-icon></ion-button>
+                <ion-fab-list side="top">
+                  <ion-button ion-fab style="height: 50px; width: 50px" color="light" (click)="logout()"><ion-icon name="log-out-sharp" size="large"></ion-icon></ion-button>
+                  <ion-button ion-fab style="height: 50px; width: 50px" color="light" (click)="goProfilePage()"><ion-icon name="person-sharp" size="large"></ion-icon></ion-button>
+                  <ion-button ion-fab style="height: 50px; width: 50px" color="light" (click)="goSettingPage()"><ion-icon name="settings-sharp" size="large"></ion-icon></ion-button>
+                </ion-fab-list>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

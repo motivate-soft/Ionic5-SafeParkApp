@@ -1,0 +1,243 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/imgs/bg/Logo-white.png" alt="logo" style="width: 30px;max-height: px;">
+    </ion-buttons>
+    <ion-title>
+      <ion-select class="selectKita" [(ngModel)]="kita" (ionChange)="onKitaChanged()" placeholder="Kita" *ngIf="usertype > 2">
+        <ion-select-option *ngFor="let item of kitaItems" [value]="item.id">
+          <ion-label>{{item.kitaname}}</ion-label>
+        </ion-select-option>
+      </ion-select>
+
+      <ion-select class="selectKita" [(ngModel)]="relUser" (ionChange)="onRelUserChanged()" placeholder="Relationship" *ngIf="usertype == 0">
+        <ion-select-option *ngFor="let item of relUsers" [value]="item.id">
+          <ion-label>{{item.firstName + " " + item.lastName}}</ion-label>
+        </ion-select-option>
+      </ion-select>
+
+      <ion-label *ngIf="usertype == 2">{{kitaname}}</ion-label>
+      
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="viewChat()" size="large">
+        <ion-icon name="chatbubbles"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="row-header"></div>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab vertical="top" horizontal="start" edge>
+    <ion-label>
+      <h2 style="margin: 0 0 0 10px;font-size: 20px;">{{'DASHBOARD' | translate}}</h2>
+      <p style="margin-left: 12px;">{{'DASHBOARD_SUB_TITLE' | translate}}</p>
+    </ion-label>
+  </ion-fab>
+
+  <ion-fab vertical="center" horizontal="center" slot="fixed" (click)="addPlan()" *ngIf="usertype != 0 && (dspUsers == null || dspUsers.length == 0) && errMsg == ''">
+    <ion-fab-button color="primary">
+      <ion-icon name="add-circle" style="font-size: 65px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Active fabs -->
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed" *ngIf="usertype != 0">
+    <ion-fab-button color="secondary">
+      <ion-icon name="apps"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+
+      <ion-fab-button color="tertiary" (click)="getNotMembers()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button color="success" style="text-align: center;" title="Active Kinder">
+        {{activeCount}}
+      </ion-fab-button>
+      
+      <ion-fab-button color="danger" style="text-align: center;" (click)="showConfirm()" *ngIf="users != null && users.length > 0 && errMsg == ''" title="Delete">
+        <ion-icon name="remove"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab-list>
+  </ion-fab>
+
+  <div class="section">
+
+    <ion-grid>
+      <ion-row style="padding: 10px 100px;font-size: 25px;">
+        <ion-col size="12" (click)="openDatePicker()">
+          <ion-icon name="calendar" side="start"></ion-icon>
+          <ion-input readonly [(ngModel)]="selectedDate" style="text-align: center;border: none;"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-searchbar *ngIf="usertype != 0 && users != null && users.length > 0 && errMsg == ''" (ionInput)="searchUsers($event)"></ion-searchbar>
+
+    <p class="item-result" *ngIf="dspUsers == null">{{ 'NO_TASK_MSG' | translate}}</p>
+
+    <ion-list *ngIf="1 >= aspectRatio && dspUsers != null && errMsg == ''">
+      <ion-item-sliding *ngFor="let item of dspUsers">
+        <ion-item (click)="openModal(item)" [class]="item.status">
+          <img [src]="profileImagePath" style="width: 50px; border-radius: 50%;" />
+          <ion-label>
+            <h2>{{item.firstName}} {{item.lastName}}</h2>
+            <p>Email: {{item.email}}</p>
+            <p>Phone: {{item.phone}}</p>
+          </ion-label>
+          <ion-note slot="end">
+            {{setFormatTime(item.gotime)}} - {{setFormatTime(item.reachtime)}}
+          </ion-note>
+        </ion-item>
+    
+        <ion-item-options side="end" *ngIf="usertype != 0">
+          <ion-item-option color="default" (click)="attend(item, selectedDate)" *ngIf="item.status == null || (!item.reachtime && item.status == 'non-active')">
+            <ion-icon slot="icon-only" name="person" color="success"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="default" (click)="gohome(item, selectedDate)" *ngIf="item.status == 'active'">
+            <ion-icon slot="icon-only" name="home" color="success"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="default" (click)="refresh(item)" *ngIf="item.reachtime && item.status == 'non-active' || item.status == 'present'">
+            <ion-icon slot="icon-only" name="refresh" color="secondary"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="default" (click)="deleteItem(item)" *ngIf="(!item.reachtime && item.status != 'present') || (item.status == 'active' && item.status != 'present')">
+            <ion-icon slot="icon-only" name="remove-circle" color="danger"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="default" (click)="viewItem(item)">
+            <ion-icon slot="icon-only" name="eye" color="primary"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+<!-- Tablet module -->
+    <ion-list>
+      <ion-item-sliding *ngIf="aspectRatio > 1">
+
+        <div class="table-daily">
+          <table *ngIf="dspUsers != null && dspUsers.length > 0 && errMsg == ''">
+            <thead>
+              <tr class="land-screen">
+                <th class="border-width-1-grey" style="z-index: 999; border-right: 2px solid lightgrey;">KIND</th>
+                <th class="border-width-1-grey">DATE TYPE</th>
+                <th class="border-width-1-grey">GO TIME</th>
+                <th class="border-width-1-grey">REACH TIME</th>
+                <th class="border-width-1-grey">PRIVATE COMMENT</th>
+                <th class="border-width-1-grey">INFO MORGEN</th>
+                <th class="border-width-1-grey">INFO ABEND</th>
+                <th class="border-width-1-grey">ESSEN</th>
+                <th class="border-width-1-grey">ACTIVATED MORNING</th>
+                <th class="border-width-1-grey">SLEEP</th>
+                <th class="border-width-1-grey">ACTIVATED AFTERNOON</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dspUsers" class="underline-col land-screen" [class]="item.status" (click)="tableItemClicked(item)" (ionChange)="recordChange(item)">
+                <th style="z-index: 999;text-align: center" [class]="item.status">
+                  <!-- <ion-icon name="menu-outline" style="font-size: 35px;"></ion-icon>  (click)="presentPopover(item)" *ngIf="item.status == 'editable'"-->
+
+                  <img *ngIf="item.profileImagePath != NULL" [src]="publicPath + item.profileImagePath" style="width: 50px; border-radius: 50%;text-align: center;margin-left: 15px;" (click)="presentPopover(item)"/>
+                  <img *ngIf="item.profileImagePath == NULL" [src]="profileImagePath" style="width: 50px; border-radius: 50%;text-align: center;margin-left: 15px;" (click)="presentPopover(item)"/>
+                  
+                  <ion-label>
+                    <h2>{{item.firstName + " " + item.lastName}}</h2>
+                  </ion-label>
+                </th>
+                <td>
+                  <ion-select class="selectGroup" [(ngModel)]="item.daytype" (ionChange)="recordChange(item)" placeholder="Day type" style="margin: auto !important;" [disabled]="item.status != 'editable'">
+                    <ion-select-option *ngFor="let dayitem of dayTypeArr" value="{{dayitem.value}}">
+                      <ion-label>{{dayitem.name}}</ion-label>
+                    </ion-select-option>
+                  </ion-select>
+                </td>
+                <td>
+                  <ion-item lines="none">
+                    <!-- <li-ionic-timepicker [(ngModel)]="item.gotime" [inputTimeConfig]="timePickerObj" (keydown)="recordChange(item)" *ngIf="item.status == 'editable'"></li-ionic-timepicker> -->
+                    <ion-datetime [(ngModel)]="item.gotime" displayFormat="HH:mm" pickerFormat="HH:mm a" *ngIf="item.status == 'editable'" (ionChange)="recordChange(item)"></ion-datetime>
+                    <!-- <ion-datetime displayFormat="HH:mm" *ngIf="item.status != 'editable'" [(ngModel)]="item.gotime" readonly></ion-datetime> -->
+                    <ion-label *ngIf="item.status != 'editable'">{{item.gotime}}</ion-label>
+                    <!-- <ion-label *ngIf="item.status == 'editable'" (click)="openTimePicker(item, 1)">{{item.gotime}}</ion-label> -->
+                  </ion-item>
+                </td>
+                <td>
+                  <ion-item lines="none">
+                    <!-- <li-ionic-timepicker [(ngModel)]="item.reachtime" [inputTimeConfig]="timePickerObj" (keydown)="recordChange(item)" *ngIf="item.status == 'editable'"></li-ionic-timepicker> -->
+                    <ion-datetime [(ngModel)]="item.reachtime" displayFormat="HH:mm" pickerFormat="HH:mm a" *ngIf="item.status == 'editable'" (ionChange)="recordChange(item)"></ion-datetime>
+                    <!-- <ion-datetime displayFormat="HH:mm" *ngIf="item.status != 'editable'" value="{{item.reachtime}}" readonly></ion-datetime> -->
+                    <ion-label *ngIf="item.status != 'editable'">{{item.reachtime}}</ion-label>
+                  </ion-item>
+                </td>
+                <td>
+                  <ion-input [(ngModel)]="item.private_comment" [disabled]="item.status != 'editable'"></ion-input>
+                </td>
+                <td>
+                  <ion-input [(ngModel)]="item.morning" [disabled]="item.status != 'editable'"></ion-input>
+                </td>
+                <td>
+                  <ion-input [(ngModel)]="item.night" [disabled]="item.status != 'editable'"></ion-input>
+                </td>
+                <td>
+                  <ion-input [(ngModel)]="item.eat" [disabled]="item.status != 'editable'"></ion-input>
+                </td>
+                <td>
+                  <!-- <img *ngIf="item.activeImgPathInMor != null" [src]="item.activeImgPathInMor" style="width: 50px; border-radius: 50%;text-align: center;margin-left: 15px;" /> -->
+                  <ion-textarea [(ngModel)]="item.actionNotesInMor" [disabled]="item.status != 'editable'"></ion-textarea>
+                </td>
+                <td>
+                  <ion-textarea [(ngModel)]="item.sleep" [disabled]="item.status != 'editable'"></ion-textarea>
+                </td>
+                <td>
+                  <!-- <img *ngIf="item.activeImgPathInAft != null" [src]="item.activeImgPathInAft" style="width: 50px; border-radius: 50%;text-align: center;margin-left: 15px;" /> -->
+                  <ion-textarea [(ngModel)]="item.actionNotesInAft" [disabled]="item.status != 'editable'"></ion-textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list>
+      <ion-item lines="none" *ngIf="errMsg != ''">
+        <ion-label>{{errMsg}}</ion-label>
+      </ion-item>
+    </ion-list>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-select class="selectGroup" [(ngModel)]="group" placeholder="GROUP" (ionChange)="onGroupChanged()" *ngIf="usertype > 2 ">
+            <ion-select-option *ngFor="let item of selectedItems" [value]="item.id">
+              <ion-label>{{item.groupname}}</ion-label>
+            </ion-select-option>
+          </ion-select>
+          <ion-label class="subtitle-to-user" *ngIf="usertype == 2 || usertype == 0">{{groupname}}</ion-label>
+        </ion-col>
+        <ion-col size="6" *ngIf="adminItems.length > 0">
+          <ion-select multiple="true" class="selectAdmin" [(ngModel)]="admin" placeholder="Admin" (ionChange)="onAdminChanged()" *ngIf="usertype > 2">
+            <ion-select-option *ngFor="let admin of adminItems" [value]="admin.id">
+              <ion-label>{{admin.firstName + ' ' + admin.lastName}}</ion-label>
+            </ion-select-option>
+          </ion-select>
+          <ion-label class="subtitle-to-user" *ngIf="usertype == 2 || usertype == 0">{{teacherNamesLabeling}}</ion-label>          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

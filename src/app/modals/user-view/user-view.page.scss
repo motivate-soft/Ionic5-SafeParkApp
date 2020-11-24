@@ -1,0 +1,63 @@
+.details {
+
+    ion-item {
+       // --background: #979da065 !important;
+        --border-radius: 5px !important;
+
+        // color: rgb(29, 131, 248);
+    }
+}
+
+ion-label {
+    font-weight: 200 !important;
+    font-family: 'PoppinsB' !important;
+    margin-left: 20px !important;
+}
+
+ion-input {
+    background:none; 
+    outline: none; 
+    -webkit-appearance: none; 
+    box-shadow: none !important; 
+    border: 1px solid gray !important;
+    border-radius: 20px;
+    padding: 0 15px !important;
+    height: 30px !important;
+    font-family: 'PoppinsB' !important;
+    margin-top: -10px !important;
+}
+
+ion-textarea {
+    background:none; 
+    outline: none; 
+    -webkit-appearance: none; 
+    box-shadow: none !important; 
+    border: 1px solid gray !important;
+    border-radius: 20px;
+    padding: 0 15px !important;
+    font-family: 'PoppinsB' !important;
+}
+
+ion-checkbox:disabled {
+    color: black;
+}
+
+ion-input::shadow input {
+    color: red;
+  }
+
+
+ion-content
+{
+    --background: transparent !important;
+    font-family: 'PoppinsB' !important;
+}
+
+
+.the-holder
+{
+    background: white;
+    border-radius: 12px;
+    width: 93%;
+    margin: auto;
+}

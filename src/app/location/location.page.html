@@ -1,0 +1,36 @@
+
+<ion-content>
+  <!-- fab placed to the bottom end -->  
+  <ion-fab vertical="top" horizontal="start">  
+    <ion-fab-button (click)="goDashboardPage()">  
+      <ion-icon name="arrow-undo-circle-sharp"></ion-icon>  
+    </ion-fab-button>  
+  </ion-fab>  
+
+  <!-- <ion-searchbar (ionInput)="searchDevice($event)" style="margin-top: 20px;"></ion-searchbar> -->
+
+  <ion-searchbar [(ngModel)]="searchStr" style="width: 80%;margin: auto;margin-top: 40px;"></ion-searchbar>
+
+  <div id="map_canvas1" style="width: 90%;margin: auto; height:400px"></div>
+  <!-- <div class="pano" id="pano_canvas1" *ngIf="userService.flag == true" style="width: 90%;margin: auto; height:300px"></div> -->
+  <ion-item>
+    <img [src]="roadImagePath" style="width: 30px; height: 30px;margin-left: 60px" (click)="displayStreetView()" *ngIf="userService.currentLng != 0 || userService.currentLat != 0"/>
+    <img [src]="mapImagePath" style="width: 30px; height: 30px;margin-left: 20px" (click)="displayMap()" *ngIf="userService.currentLng != 0 || userService.currentLat != 0"/>    
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngIf="userService.driver" >
+      <img [src]="profileImagePath" style="width: 30px; height: 30px;margin-right: 20px;"/>
+      
+      <ion-label>
+        <p> Driver name : {{userService.driver.name}}</p>
+        <p> Plate No : {{userService.driver.plateNo}}</p>
+        <p> Phone Number : {{userService.driver.phoneNumber}}</p>
+      </ion-label>
+
+      <!-- <ion-icon color="danger" name="call-sharp" slot="end"></ion-icon> -->
+      
+    </ion-item>
+  </ion-list>
+
+</ion-content>

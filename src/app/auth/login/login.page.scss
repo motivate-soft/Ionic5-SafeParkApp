@@ -1,0 +1,59 @@
+ion-content 
+{
+    --background: none;
+    background-image: url('../../../assets/imgs/bg/login.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    font-family: monospace !important;
+    
+    .holder
+    {
+        width: 100%;
+        margin-top: -50px;
+        .btns-holder
+        {
+            margin-top: 40px;
+            
+            ion-button 
+            {
+                --border-color: rgba(119, 134, 158, 0.39);
+                --border-style: solid;
+                --border-width: 1px;
+                height: 3rem !important;
+                // width: 100% !important;
+                margin: 0 20px;
+            }
+        }
+
+        form
+        {
+            margin: 0px 50px;
+        }
+
+        img {
+            max-width: 150px !important;
+        }
+    }
+    .the-title {
+        max-width: 50%;
+        margin:auto;
+        text-align: center;
+    }
+}
+
+ion-button 
+{
+    --border-color: rgba(151, 170, 201, 0.39);
+    --border-style: solid;
+    --border-width: 1px;
+    height: 3rem !important;
+    // width: 50% !important;
+    margin: 0 50px;
+    margin-top: 30px;
+
+}
+
+.forgot-password-title {
+    text-align: left;
+}

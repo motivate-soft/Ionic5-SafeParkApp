@@ -1,0 +1,119 @@
+<ion-content>
+  <ion-grid style="height: 100%">
+    <ion-row style="height: 100%; margin-top: 40px;">
+      <div class="holder">
+        
+        <form [formGroup]="registerForm" (ngSubmit)="register()" style="width: 80%;margin:auto">
+
+          <h1 style="text-align: center;">Sign Up</h1>
+          <div class="details">
+
+            <div class="detail-item">
+              <ion-label>Full Name</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('fullName').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="fullName" class="username" placeholder="Enter Fullname"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Email</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('email').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="email" class="username" placeholder="Enter Email"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              
+              <ion-label>Phone</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('phone').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input type="phone" formControlName="phone" class="username" placeholder="Enter Phone Number"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-label>User Status</ion-label>
+                    <ion-item>
+                      <span class="icn-holder" slot="end" *ngIf="!registerForm.get('userType').invalid">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                      </span>
+                      <ion-input formControlName="userType" class="username" placeholder="Select User Status" [(ngModel)]="userState" readonly> </ion-input>
+                    </ion-item>                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-fab horizontal="center">
+                      <ion-fab-button>
+                        <ion-icon name="construct"></ion-icon>
+                      </ion-fab-button>
+                      <ion-fab-list side="end">
+                        <ion-fab-button title="Customer" (click)="selectLevel('client')"><ion-icon name="person-add"></ion-icon></ion-fab-button>
+                      </ion-fab-list>
+                      <ion-fab-list side="start">
+                        <ion-fab-button title="Admin" (click)="selectLevel('admin')"><ion-icon name="people"></ion-icon></ion-fab-button>
+                      </ion-fab-list>
+                    </ion-fab>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Username(Email)</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('userName').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="userName" class="username" placeholder="Enter Username"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Password</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('password').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input type="password" class="password" placeholder="Enter Password" formControlName="password"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Confirm Password</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!registerForm.get('confirmPassword').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input type="password" class="password" placeholder="Confirm Password" formControlName="confirmPassword"> </ion-input>
+              </ion-item>
+            </div>
+          </div>
+          
+          <div class="btn-holder">
+            <ion-button expand="block" type="submit" routerDirection="root" [disabled]="registerForm.invalid">
+              Register
+            </ion-button>
+          </div>
+
+          <div class="signup-holder">
+            <p class="forgot-password-title"><span (click)="goSignIn()"> Sign In</span></p>
+          </div>
+
+        </form>
+        
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

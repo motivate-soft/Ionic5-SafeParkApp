@@ -1,0 +1,46 @@
+<ion-content class="ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row class="ion-justify-content-center ion-align-items-center " style="height: 100%">
+      <div class="holder">
+        <div class="the-title">
+          <img src="assets/imgs/bg/logo.png" alt="Logo">
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="verifyCode()">
+          <div class="details">
+            <div class="detail-item">
+              <ion-label>Verify</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!loginForm.get('verifyCode').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="verifyCode" class="username" placeholder="Enter Verify Code"> </ion-input>
+              </ion-item>
+
+              <div class="error-messages">
+                <ng-container *ngFor="let error of error_messages.verifyCode">
+                  <div class="error-message"
+                    *ngIf="loginForm.get('verifyCode').hasError(error.type) && (loginForm.get('verifyCode').dirty || loginForm.get('verifyCode').touched)">
+                    {{error.message}}
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          
+          <div class="btn-holder">
+            <ion-button expand="block" type="submit" routerDirection="root" [disabled]="loginForm.invalid">
+              Check
+            </ion-button>
+          </div>
+          <div class="signup-holder">
+            <p (click)="goLogin()">Login ?</p>
+          </div>
+        </form>
+      </div>
+    </ion-row>
+  </ion-grid>
+
+
+  
+</ion-content>

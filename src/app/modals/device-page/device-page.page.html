@@ -1,0 +1,75 @@
+<ion-content>
+  <ion-grid style="height: 100%">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+      <div class="the-holder ion-padding" >
+        <ion-row class="title-row">
+          <ion-col size="8" class="ion-text-left">
+
+          </ion-col>
+          <ion-col size="4" class="ion-text-right" (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+
+        <div class="bottom-section">
+
+          <div class="detail-item">
+            <ion-label>Name*</ion-label>
+            <ion-item lines="none">
+              <ion-input [(ngModel)]="name"> </ion-input>
+            </ion-item>
+          </div>
+
+          <div class="detail-item">
+            <ion-label>Phone Number*</ion-label>
+            <ion-item lines="none">
+              <ion-input type="phone" [(ngModel)]="phoneNumber"></ion-input>
+            </ion-item>
+          </div>
+    
+          <div class="detail-item">
+            <ion-label>Imei*</ion-label>
+            <ion-item lines="none">
+              <ion-input type="phone" [(ngModel)]="imei"></ion-input>
+            </ion-item>
+          </div>
+          
+          <div class="detail-item">
+            <ion-label>Email*</ion-label>
+            <ion-item lines="none">
+              <ion-input [(ngModel)]="email"> </ion-input>
+            </ion-item>
+          </div>
+
+          <div class="detail-item">
+            <ion-label>Plate No</ion-label>
+            <ion-item lines="none">                
+              <ion-input [(ngModel)]="plateNo"> </ion-input>
+            </ion-item>
+          </div>
+
+          <div class="detail-item">
+            <ion-label>Created Time</ion-label>
+            <ion-item lines="none">
+              <ion-datetime value="2020-07-01T15:43:40.394Z" display-timezone="utc" [(ngModel)]="createdAt" ></ion-datetime>
+            </ion-item>
+          </div>
+
+        </div>
+        
+
+        <ion-row>
+          <ion-col size="4"></ion-col>
+          <ion-col size="8" class="ion-text-right">
+            <ion-button color="secondary" shape="round" fill="outline" (click)="update()">
+              <ion-icon slot="start" name="create"></ion-icon>
+              Update
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-content>
+    <!-- fab placed to the bottom end -->  
+    <ion-fab vertical="top" horizontal="start" slot="fixed">  
+      <ion-fab-button (click)="goDashboardPage()">  
+        <ion-icon name="arrow-undo-circle-sharp"></ion-icon>  
+      </ion-fab-button>  
+    </ion-fab>  
+  
+  <ion-grid style="height: 100%">
+    <ion-row style="height: 100%; margin-top: 100px;">
+      <div class="holder">
+        
+        <h1 style="text-align: center;">Add Vehicle</h1>
+
+        <ion-select class="selectKita" [(ngModel)]="selectedUser" (ionChange)="onUserChanged()" *ngIf="userType == 'admin'" style="width: 80%;margin:auto">
+          <ion-select-option *ngFor="let item of allUsers" value="{{item.id}}">
+            <ion-label>{{item.fullName}}</ion-label>
+          </ion-select-option>
+        </ion-select>
+
+        <form [formGroup]="deviceForm" (ngSubmit)="add()" style="width: 80%;margin:auto">
+        
+          <div class="details">
+            
+            <div class="detail-item">
+              <ion-label>Name</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!deviceForm.get('name').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="name" class="username" placeholder="Enter Name"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Phone Number</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!deviceForm.get('phoneNumber').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="phoneNumber" class="username" placeholder="Enter Phone Number"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Device Imei</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!deviceForm.get('imei').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="imei" class="username" placeholder="Enter Device Imei" [(ngModel)]="deviceImei"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Email</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!deviceForm.get('email').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="email" class="username" placeholder="Enter Email"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>Vehicle Plate No</ion-label>
+              <ion-item>
+                <span class="icn-holder" slot="end" *ngIf="!deviceForm.get('plateNo').invalid">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </span>
+                <ion-input formControlName="plateNo" class="username" placeholder="Enter Plate No"> </ion-input>
+              </ion-item>
+            </div>
+          </div>
+          
+          <div class="btn-holder">
+            <ion-button expand="block" type="submit" routerDirection="root" [disabled]="deviceForm.invalid">
+              Add
+            </ion-button>
+          </div>
+
+        </form>
+        
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

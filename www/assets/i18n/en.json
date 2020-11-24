@@ -1,0 +1,66 @@
+{
+    "NEW_CHILDREN_OF_SCHOOL": "New Schoolboys",
+    "SCHOOL_ACTIVITIES": "School Activities",
+    "MONTHLY_KITA_REPORT": "Monthly School Report",
+    "GROUP_MANAGEMENT": "Group Management",
+    "SCHOOL_MANAGEMENT": "School Management",
+    "MY_PROFILE": "My Profile",
+    "PROFILE": "Profile",
+    "SETTING": "Setting",
+    "CREATE": "Create",
+    "UPLOAD": "Upload",
+    "UPDATE": "Update",
+    "DELETE": "Delete",
+    "VIEW": "View",
+    "ANALYSIS": "Analysis",
+    "CHANGE_PASSWORD": "Change password",
+    "CHANGE_USER_DETAILS": "Change Details",
+    "CHANGE_LANG": "Change Language",
+
+
+    "DASHBOARD": "Dashboard",
+    "DASHBOARD_SUB_TITLE": "Please select your school and group.",
+    "SEARCH": "Search",
+    "NO_TASK_MSG": "There aren't any tasks today",
+    "NO_DATA": "No Data",
+
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "BIRTH_DATE": "Birth date",
+    "ZIP_CODE": "ZIP-Code",
+    "CITY": "City",
+    "EMAIL": "Email",
+    "PHONE_NUMBER": "Phone number",
+    "CURRENT_PASSWORD": "Current password",
+    "NEW_PASSWORD": "New password",
+    "NEW_SCHOOL": "New School",
+    "CONFIRM_PASSWORD": "Confirm password",
+
+    "DATA_SHEET": "Data sheet",
+    "SCHOOL_NAME": "Schools' name",
+    "DESCRIPTION": "Description",
+    "RESIDENCE": "Residence",
+    "PROVINCE": "Province",
+    "POSTCODE": "Postcode",
+    "ADDRESS": "Address",
+    "CHILDREN_COUNT": "Count of Children",
+    "GROUP_COUNT": "Count of entire Group",
+    "ADMIN_COUNT": "Count of entire Supervisor",
+
+    "SUPERVISOR": "Supervisor",
+    "SUPERVISOR_SUBTITLE": "Please select the supervisor who should be processed.",
+    "CHILDREN": "Children",
+    "CHILDREN_SUBTITLE": "Please select the child that should be processed.",
+    "ARCHIVE": "Group Evaluation",
+    "ARCHIVE_SUBTITLE": "Evaluation of the attendance lists of a group.",
+    "PRIVATE": "Private",
+    "GROUP": "Group",
+    "SCHOOL": "School",
+    "KINDER_REPORT": "Kinder Bericht",
+    
+    
+    "SUCC_MSG_UPDATE_PROFILE": "Successfully updated!",
+
+    "ERR_MSG_DISAGREE": "Please check the password again."
+
+}

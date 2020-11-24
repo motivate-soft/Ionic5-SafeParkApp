@@ -1,0 +1,49 @@
+ion-content 
+{
+    font-family: monospace !important;
+    
+    .holder
+    {
+        width: 100%;
+        margin-top: -50px;
+        .btns-holder
+        {
+            margin-top: 15px;
+            
+            ion-button 
+            {
+                height: 3rem !important;
+            }
+        }
+
+        img {
+            max-width: 150px !important;
+        }
+    }
+
+    .the-title {
+        max-width: 50%;
+        margin:auto;
+        text-align: center;
+    }
+}
+
+
+ion-button 
+{
+    height: 3rem !important;
+    margin-top: 20px;
+}
+
+.sign-up-btn {
+    background-color: #3c63ff;
+}
+
+.sign-in-btn {
+    background-color: #ffffff;
+}
+
+.header-title {
+    color: white;
+    text-align: center;
+}

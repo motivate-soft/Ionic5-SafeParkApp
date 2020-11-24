@@ -1,0 +1,94 @@
+
+ion-content {
+  --background: #fff !important;
+}
+
+ion-title {
+  text-align: center;
+  img {
+      width: 15%;
+  }
+  font-family: 'PoppinsH' !important; font-weight: 100 !important;
+}
+
+.details {
+  padding: 0 20px 20px 20px !important;
+  ion-item {
+      --border-radius: 5px !important;
+  }
+}
+
+.section {
+  margin-top: 25px;
+}
+
+ion-label {
+  font-weight: 200 !important; font-family: 'PoppinsB' !important;
+}
+
+ion-input {
+  background:none; outline: none; -webkit-appearance: none; box-shadow: none !important; border: 1px solid gray !important;
+  border-radius: 20px; padding: 0 15px !important; height: 30px !important; font-family: 'PoppinsB' !important; margin-top: -10px !important;
+}
+
+ion-textarea {
+  background:none; outline: none; -webkit-appearance: none; box-shadow: none !important; border: 1px solid gray !important;
+  border-radius: 20px; padding: 0 15px !important; font-family: 'PoppinsB' !important;
+}
+
+ion-input::shadow input {
+  color: red;
+}
+
+ion-select.selectGroup {
+  font-weight: 200; width: 100% !important; background-color: white !important; color: black; height: 30px !important;
+  margin-top: -10px; border-radius: 20px !important; font-family: 'PoppinsB' !important; justify-content: start;
+
+  /* Set a different placeholder color */
+  --placeholder-color: black;
+
+  /* Set full opacity on the placeholder */
+  --placeholder-opacity: 1;
+
+  ion-select-option {
+      font-family: 'PoppinsB' !important;
+  }
+}
+
+ion-select.selectKita {
+  font-weight: 200; width: 100% !important; background-color: transparent !important; color: white; font-family: 'PoppinsB' !important; justify-content: start;
+
+  /* Set a different placeholder color */
+  --placeholder-color: white;
+
+  /* Set full opacity on the placeholder */
+  --placeholder-opacity: 1;
+
+  ion-select-option {
+      font-family: 'PoppinsB' !important;
+  }
+}
+
+.selectGroup ion-select-option {
+  width: 100%;  
+}
+
+ion-footer {
+  --color: white !important; height: 45px !important; font-family: 'PoppinsB' !important;
+}
+
+h6 {
+  color: steelblue;
+}
+
+.alert-wrapper {
+  background: #e5e5e5;
+}
+
+.my-custom-class .alert-wrapper {
+  background: #e5e5e5;
+}
+
+.subtitle-to-user {
+  margin-top: -12px; background-color: white;color: black; width: 200% !important;text-align: center !important;border-radius: 20px;
+}

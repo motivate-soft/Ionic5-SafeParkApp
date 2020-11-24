@@ -1,0 +1,7 @@
+{
+  "name": "simplevisorapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

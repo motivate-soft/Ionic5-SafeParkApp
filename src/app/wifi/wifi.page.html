@@ -1,0 +1,47 @@
+<ion-content>
+  <!-- fab placed to the bottom end -->  
+  <ion-fab vertical="top" horizontal="start" slot="fixed">  
+    <ion-fab-button (click)="goDashboardPage()">  
+      <ion-icon name="arrow-undo-circle-sharp"></ion-icon>  
+    </ion-fab-button>  
+  </ion-fab>
+  
+  <ion-label style="margin-top: 30px;">
+    <h1 style="text-align: center;">Wifi Connection</h1>
+  </ion-label>
+      
+  <ion-grid style="margin-top: 30px;">
+    <ion-row>
+      <ion-col size="6">
+        
+        <ion-select class="selectAdmin" [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select One" [(ngModel)]="selectedVehicle" (ionChange)="onVehicleChanged()">
+          <ion-select-option *ngFor="let item of allDevices" [value]="item">
+            <ion-label>{{item.name}}</ion-label>          
+          </ion-select-option>
+        </ion-select>
+        
+      </ion-col>
+      <ion-col size="6">
+
+        <ion-select class="selectAdmin" [(ngModel)]="wifi" placeholder="Wifi" (ionChange)="onWifiSelected()">
+          <ion-select-option *ngFor="let item of allWifies" [value]="item.ssid">
+            <ion-label>{{item.ssid}}</ion-label>
+          </ion-select-option>
+        </ion-select>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngFor="let item of selectedVehicles">
+    <ion-item>
+      <img [src]="wifiImagePath" style="width: 50px; border-radius: 50%;margin-right: 20px;"/>
+      <ion-label>
+        <h3>{{item.ssid}}</h3>
+        <ion-button color="dark" (click)="deleteWifi(item.id)">Remove</ion-button>
+        <ion-button *ngIf="item.state == '0'" (click)="changeState(item.id)">Disconnected</ion-button>
+        <ion-button color="success" *ngIf="item.state == '1'" (click)="changeState(item.id)">Connected</ion-button>
+      </ion-label>
+    </ion-item>          
+  </ion-list>
+</ion-content>

@@ -1,0 +1,114 @@
+<ion-content>
+  <ion-grid style="height: 100%">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+      <div class="the-holder ion-padding" >
+        <ion-row class="title-row">
+          <ion-col size="8" class="ion-text-left">
+            <ion-icon name="people"></ion-icon>
+          </ion-col>
+          <ion-col size="4" class="ion-text-right" (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+
+        <div class="bottom-section ">
+
+          <div class="details">
+            <div class="detail-item">
+              <ion-label>first name*</ion-label>
+              <ion-item lines="none">
+                <ion-input [(ngModel)]="firstName"> </ion-input>
+              </ion-item>
+            </div>
+      
+            <div class="detail-item">
+              <ion-label>last name*</ion-label>
+              <ion-item lines="none">
+                <ion-input [(ngModel)]="lastName"> </ion-input>
+              </ion-item>
+            </div>
+      
+            <div class="detail-item">
+              <ion-label>username*</ion-label>
+              <ion-item lines="none">
+                <ion-input [(ngModel)]="username"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>new password</ion-label>
+              <ion-item lines="none">
+                <ion-input [(ngModel)]="password" type="password"> </ion-input>
+              </ion-item>
+            </div>
+      
+            <div class="detail-item">
+              <ion-label>birth date*</ion-label>
+              <ion-item lines="none">
+                <ion-datetime value="2020-07-01T15:43:40.394Z" display-timezone="utc" [(ngModel)]="birthdate"></ion-datetime>
+              </ion-item>
+            </div>
+      
+            <div class="detail-item">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4">
+                    <ion-label>ZIP-Code*</ion-label>
+                    <ion-item lines="none">
+                      <ion-input [(ngModel)]="zip"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="8">
+                    <ion-label>City*</ion-label>
+                    <ion-item lines="none">
+                      <ion-input [(ngModel)]="city"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+      
+            <div class="detail-item">
+              <ion-label>email*</ion-label>
+              <ion-item lines="none">
+                <ion-input [(ngModel)]="email"> </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-label>phone number*</ion-label>
+              <ion-item lines="none">
+                <ion-input type="phone" [(ngModel)]="phone"></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="detail-item">
+              <ion-item *ngFor="let day of week" lines="none">
+                <ion-label>{{day.label}}</ion-label>
+                <ion-checkbox slot="start" color="{{day.color}}" [(ngModel)]="day.isChecked"></ion-checkbox>
+              </ion-item>
+            </div>
+      
+          </div>
+        </div>
+
+        <ion-row>
+          <ion-col size="4"></ion-col>
+          <ion-col size="8" class="ion-text-right">
+            <ion-button color="secondary" shape="round" fill="outline" (click)="update()">
+              <ion-icon slot="start" name="create"></ion-icon>
+              Update
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" *ngIf="warning" style="color: red;">
+            {{warning}}
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

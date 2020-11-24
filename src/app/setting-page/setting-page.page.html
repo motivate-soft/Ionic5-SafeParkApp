@@ -1,0 +1,132 @@
+<ion-content>
+
+  <!-- fab placed to the bottom end -->  
+  <ion-fab vertical="top" horizontal="start" slot="fixed">  
+    <ion-fab-button (click)="goDashboardPage()">  
+      <ion-icon name="arrow-undo-circle-sharp"></ion-icon>  
+    </ion-fab-button>  
+  </ion-fab>  
+      
+  <ion-list style="margin-top: 20px;">
+    <ion-list-header>
+      <ion-label>
+        <h1 style="text-align: center;">Alarm Trigger Options</h1>
+      </ion-label>
+    </ion-list-header>
+  
+    <ion-item>
+      <ion-label>Vehicle</ion-label>
+
+      <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select One" [(ngModel)]="selectedVehicle" (ionChange)="onVehicleChanged()">
+        <ion-select-option *ngFor="let item of allDevices" [value]="item">
+          <ion-label>{{item.name}}</ion-label>          
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+  </ion-list>
+
+    <ion-list *ngIf="selectedVehicle">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Driver Name</ion-label>
+              <ion-input value="{{user.fullName}}" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input value="{{selectedVehicle.name}}" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Plate No</ion-label>
+              <ion-input value="{{selectedVehicle.plateNo}}" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Imei</ion-label>
+              <ion-input value="{{selectedVehicle.imei}}" readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+      <ion-item *ngIf="wifi == 1">
+        <ion-label>Wifi</ion-label>
+        <ion-toggle color="secondary" checked (ionChange)="checkState('wifi', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="wifi == 0">
+        <ion-label>Wifi</ion-label>
+        <ion-toggle color="secondary"  (ionChange)="checkState('wifi', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <!-- /////phone number -->
+      <ion-item>
+        <ion-label position="floating">Number 1</ion-label>
+        <ion-input [(ngModel)]="number1" (ionChange)="updateVehicleData()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Number 2</ion-label>
+        <ion-input [(ngModel)]="number2" (ionChange)="updateVehicleData()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Number 3</ion-label>
+        <ion-input [(ngModel)]="number3" (ionChange)="updateVehicleData()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Number 4</ion-label>
+        <ion-input [(ngModel)]="number4" (ionChange)="updateVehicleData()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Number 5</ion-label>
+        <ion-input [(ngModel)]="number5" (ionChange)="updateVehicleData()"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="gps == 1">
+        <ion-label>Gps</ion-label>
+        <ion-toggle color="secondary" checked (ionChange)="checkState('gps', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="gps == 0">
+        <ion-label>Gps</ion-label>
+        <ion-toggle color="secondary" (ionChange)="checkState('gps', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="gyro == 1">
+        <ion-label>Gyro</ion-label>
+        <ion-toggle color="secondary" checked (ionChange)="checkState('gyro', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="gyro == 0">
+        <ion-label>Gyro</ion-label>
+        <ion-toggle color="secondary" (ionChange)="checkState('gyro', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="powerSupply == 1">
+        <ion-label>Power Supply</ion-label>
+        <ion-toggle color="secondary" checked (ionChange)="checkState('powerSupply', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="powerSupply == 0">
+        <ion-label>Power Supply</ion-label>
+        <ion-toggle color="secondary" (ionChange)="checkState('powerSupply', $event.target.checked)"></ion-toggle>
+      </ion-item>
+
+    </ion-list>
+
+</ion-content>

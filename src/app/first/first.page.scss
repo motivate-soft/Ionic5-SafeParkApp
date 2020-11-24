@@ -1,0 +1,59 @@
+ion-content 
+{
+    --background: none;
+    background-image: url('../../assets/imgs/bg/first.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    font-family: monospace !important;
+    
+    .holder
+    {
+        width: 100%;
+        margin-top: -50px;
+        .btns-holder
+        {
+            margin-top: 40px;
+            
+            ion-button 
+            {
+                height: 3rem !important;
+                margin: 0 20px;
+            }
+        }
+
+        img {
+            max-width: 150px !important;
+        }
+    }
+
+    .the-title {
+        max-width: 50%;
+        margin:auto;
+        text-align: center;
+    }
+}
+
+.form {
+    margin: 0px 50px;
+}
+
+ion-button 
+{
+    height: 3rem !important;
+    margin: 0 50px;
+    margin-top: 30px;
+}
+
+.sign-up-btn {
+    background-color: #3c63ff;
+}
+
+.sign-in-btn {
+    background-color: #ffffff;
+}
+
+.header-title {
+    color: white;
+    text-align: center;
+}
